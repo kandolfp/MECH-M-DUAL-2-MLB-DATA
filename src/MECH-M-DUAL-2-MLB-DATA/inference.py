@@ -5,10 +5,10 @@ import logging
 from pathlib import Path
 
 logging.basicConfig(format='%(levelname)s:%(name)s: %(message)s',
-                    level=logging.DEBUG)
+                    level=logging.INFO)
 _, _, X_test, y_test = load_cats_vs_dogs()
 
-file = Path(".") / "models" / "model"
+file = Path(".") / "dvclive" / "artifacts" / "model.skops"
 
 logging.debug("Load classifier")
 voting_clf = load(file)
