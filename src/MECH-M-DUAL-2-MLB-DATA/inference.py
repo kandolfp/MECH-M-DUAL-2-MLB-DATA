@@ -4,7 +4,7 @@ from myio import load_skops as load
 import logging
 from pathlib import Path
 
-logging.basicConfig(format='%(levelname)s:%(name)s: %(message)s', 
+logging.basicConfig(format='%(levelname)s:%(name)s: %(message)s',
                     level=logging.DEBUG)
 _, _, X_test, y_test = load_cats_vs_dogs()
 

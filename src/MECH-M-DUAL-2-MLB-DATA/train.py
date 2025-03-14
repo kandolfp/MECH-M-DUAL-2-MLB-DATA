@@ -9,7 +9,7 @@ from myio import save_skops as save
 import logging
 from pathlib import Path
 
-logging.basicConfig(format='%(levelname)s:%(name)s: %(message)s', 
+logging.basicConfig(format='%(levelname)s:%(name)s: %(message)s',
                     level=logging.DEBUG)
 X_train, y_train, X_test, y_test = load_cats_vs_dogs()
 
