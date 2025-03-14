@@ -8,25 +8,30 @@ from data import load_cats_vs_dogs
 from myio import save_skops as save
 import logging
 from pathlib import Path
+from omegaconf import OmegaConf
 
 logging.basicConfig(format='%(levelname)s:%(name)s: %(message)s',
                     level=logging.DEBUG)
 X_train, y_train, X_test, y_test = load_cats_vs_dogs()
 
+logging.debug("Load config")
+config_path = Path(".") / "config.yaml"
+config = OmegaConf.load(config_path)
+components = config.model.components
+estimators = components[1].init_args.estimators
+
 logging.debug("Create classifier")
 voting_clf = make_pipeline(
-    PCA(n_components=41),
+    PCA(**components[0].init_args),
     VotingClassifier(
         estimators=[
-            ("lda", LinearDiscriminantAnalysis()),
+            ("lda", LinearDiscriminantAnalysis(
+                **estimators[0].init_args
+            )),
             ("rf", RandomForestClassifier(
-                n_estimators=500,
-                max_leaf_nodes=2,
-                random_state=6020)),
+                **estimators[1].init_args)),
             ("svc", SVC(
-                kernel="linear",
-                probability=True,
-                random_state=6020)),
+                **estimators[2].init_args)),
         ],
         flatten_transform=False,
     )
