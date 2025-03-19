@@ -5,23 +5,17 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.svm import SVC
 import logging
 
-def get_model():
+def get_model(components, estimators):
     logging.debug("Create classifier")
     voting_clf = make_pipeline(
-        PCA(n_components=41),
+        PCA(**components[0].init_args),
         VotingClassifier(
             estimators=[
-                ("lda", LinearDiscriminantAnalysis()),
-                ("rf", RandomForestClassifier(
-                    n_estimators=500,
-                    max_leaf_nodes=2,
-                    random_state=6020)),
-                ("svc", SVC(
-                    kernel="linear",
-                    probability=True,
-                    random_state=6020)),
+                ("lda", LinearDiscriminantAnalysis(**estimators[0].init_args)),
+                ("rf", RandomForestClassifier(**estimators[1].init_args)),
+                ("svc", SVC(**estimators[2].init_args)),
             ],
-            flatten_transform=False,
+            **components[1].init_args,
         )
     )
     return voting_clf
