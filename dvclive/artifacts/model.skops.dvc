@@ -1,0 +1,5 @@
+outs:
+- md5: 60fe69a9d34145f799f1af0583491123
+  size: 26568740
+  hash: md5
+  path: model.skops
