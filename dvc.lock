@@ -1,0 +1,25 @@
+schema: '2.0'
+stages:
+  train:
+    cmd: pdm run python src/MECH-M-DUAL-2-MLB-DATA/train.py
+    deps:
+    - path: data
+      hash: md5
+      md5: 5987e80830fc2caf6d475da3deca1dfe.dir
+      size: 111165
+      nfiles: 2
+    - path: params.yaml
+      hash: md5
+      md5: cb73b44317c559fce7c5e035ba5be854
+      size: 644
+    - path: src/MECH-M-DUAL-2-MLB-DATA/
+      hash: md5
+      md5: c93360b2cf461f6b2f8e9656882331a7.dir
+      size: 14538
+      nfiles: 8
+    outs:
+    - path: dvclive
+      hash: md5
+      md5: c2bbfd7cb23c3aa8700bc24287b56fee.dir
+      size: 5569537
+      nfiles: 6

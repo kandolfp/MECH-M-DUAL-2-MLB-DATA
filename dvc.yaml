@@ -1,0 +1,9 @@
+stages:
+  train:
+    cmd: pdm run python src/MECH-M-DUAL-2-MLB-DATA/train.py
+    deps:
+    - data
+    - src/MECH-M-DUAL-2-MLB-DATA/
+    - params.yaml
+    outs:
+    - dvclive
