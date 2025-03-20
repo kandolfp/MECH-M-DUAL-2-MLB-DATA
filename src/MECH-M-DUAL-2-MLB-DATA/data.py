@@ -1,17 +1,11 @@
 import numpy as np
-import scipy
 import logging
-from myio import check_or_download
+import etl
 
 
 def load_cats_vs_dogs():
-    cats_w = scipy.io.loadmat(check_or_download(
-        "https://github.com/dynamicslab/databook_python/"
-        "raw/refs/heads/master/DATA/catData_w.mat").absolute())["cat_wave"]
-
-    dogs_w = scipy.io.loadmat(check_or_download(
-        "https://github.com/dynamicslab/databook_python/"
-        "raw/refs/heads/master/DATA/dogData_w.mat").absolute())["dog_wave"]
+    cats_w = etl.load("catData_w.mat")
+    dogs_w = etl.load("dogData_w.mat")
 
     X_train = np.concatenate((cats_w[:60, :], dogs_w[:60, :]))
     y_train = np.repeat(np.array([1, -1]), 60)

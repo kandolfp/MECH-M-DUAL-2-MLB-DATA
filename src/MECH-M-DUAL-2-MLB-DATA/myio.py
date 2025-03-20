@@ -6,17 +6,6 @@ import onnxruntime as ort
 import pathlib
 import logging
 import numpy as np
-from urllib.request import urlretrieve
-
-
-def check_or_download(url: str) -> pathlib.Path:
-    dir = pathlib.Path("data")
-    dir.mkdir(parents=True, exist_ok=True)
-
-    file = dir / url.split("/")[-1]
-    if not file.exists():
-        urlretrieve(url, file)
-    return file
 
 
 def save_onnx(clf: sklearn.utils._bunch.Bunch,
