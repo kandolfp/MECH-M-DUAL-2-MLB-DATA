@@ -7,3 +7,21 @@ stages:
     - params.yaml
     outs:
     - dvclive
+params:
+- dvclive/params.yaml
+metrics:
+- dvclive/metrics.json
+plots:
+- dvclive/plots/metrics:
+    x: step
+- dvclive/plots/sklearn/confusion_matrix.json:
+    template: confusion
+    x: actual
+    y: predicted
+    title: Confusion Matrix
+    x_label: True Label
+    y_label: Predicted Label
+artifacts:
+  model:
+    path: dvclive/artifacts/model.skops
+    type: model
