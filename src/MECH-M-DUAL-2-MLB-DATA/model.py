@@ -5,7 +5,7 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.svm import SVC
 import logging
 
-def get_model(components, estimators):
+def get(components, estimators):
     logging.debug("Create classifier")
     voting_clf = make_pipeline(
         PCA(**components[0].init_args),
@@ -19,3 +19,12 @@ def get_model(components, estimators):
         )
     )
     return voting_clf
+
+def evaluate(clf, data):
+    dic = {}
+    logging.debug("Score classifier")
+    for X, y, prefix in data:
+        score = clf.score(X, y)
+        dic[prefix + "score"] = score
+        logging.info(f"We have a hard voting {prefix}-score of {score}")
+    return dic
