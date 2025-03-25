@@ -5,6 +5,7 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.svm import SVC
 import logging
 
+
 def get(components, estimators):
     logging.debug("Create classifier")
     voting_clf = make_pipeline(
@@ -19,6 +20,7 @@ def get(components, estimators):
         )
     )
     return voting_clf
+
 
 def evaluate(clf, data):
     dic = {}

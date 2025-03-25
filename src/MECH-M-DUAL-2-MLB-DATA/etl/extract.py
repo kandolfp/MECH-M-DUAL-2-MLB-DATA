@@ -1,11 +1,11 @@
-import numpy as np
 import scipy
 import logging
 import requests
 import io
 
-def extract(url: str, key: str):
+
+def extract(url: str, key: str) -> dict:
+    """Extract a .mat file from an url"""
     logging.debug(f"Extract data from {url}")
     response = requests.get(url)
-    image = scipy.io.loadmat(io.BytesIO(response.content))[key]
-    return image
+    return scipy.io.loadmat(io.BytesIO(response.content))[key]

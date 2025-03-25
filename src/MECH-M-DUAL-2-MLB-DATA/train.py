@@ -7,11 +7,12 @@ from pathlib import Path
 from omegaconf import OmegaConf
 from dvclive import Live
 
+
 def param_from_yaml(live, component):
     prefix = component.type.split(".")[-1]
     for name, value in component.init_args.items():
         live.log_param(prefix + "/" + name, value)
-    
+
 
 logging.basicConfig(format='%(levelname)s:%(name)s: %(message)s',
                     level=logging.DEBUG)
